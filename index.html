@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compass</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="cabc">
+        <img src="assets/img/Logo.png" alt="Logo" id="logo">
+        <h1 id="tt">Compass</h1>
+    </header>
+    <main>
+        <div id="consult">
+            <h2 id="sub-tt">Consultar CEP:</h2>
+            <form id="ins-cep">
+                <input type="text" placeholder="Insira o CEP" id="input">
+                <button onclick="consulta()" id="btn"><img src="assets/img/img-botao.png" alt="Botão para consultar CEP" id="seta"></button>
+            </form>
+        </div>
+        <div class="informacoes">
+            <p class="info">Rua: <span id="rua"></span></p>
+            <p class="info">Bairro: <span id="bairro"></span></p>
+            <p class="info">Cidade: <span id="cidade"></span></p>
+            <p class="info">Estado: <span id="estado"></span></p>
+        </div>
+    </main>
+</body>
+</html>
