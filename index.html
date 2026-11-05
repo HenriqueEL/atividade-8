@@ -15,16 +15,42 @@
         <div id="consult">
             <h2 id="sub-tt">Consultar CEP:</h2>
             <form id="ins-cep">
-                <input type="text" placeholder="Insira o CEP" id="input">
-                <button onclick="consulta()" id="btn"><img src="assets/img/img-botao.png" alt="Botão para consultar CEP" id="seta"></button>
+                <input id="input" type="text" placeholder="Insira o CEP">
+                <button type="button" onclick="consulta()" id="btn"><img src="assets/img/img-botao.png" alt="Botão para consultar CEP" id="seta"></button>
             </form>
         </div>
         <div class="informacoes">
-            <p class="info">Rua: <span id="rua"></span></p>
-            <p class="info">Bairro: <span id="bairro"></span></p>
-            <p class="info">Cidade: <span id="cidade"></span></p>
-            <p class="info">Estado: <span id="estado"></span></p>
+            <p class="info">Rua: <span id="rua" class="resposta"></span></p>
+            <p class="info">Bairro: <span id="bairro" class="resposta"></span></p>
+            <p class="info">Cidade: <span id="cidade" class="resposta"></span></p>
+            <p class="info">Estado: <span id="estado" class="resposta"></span></p>
         </div>
     </main>
+    <script>
+        var dadosCep;
+        var cep;
+
+        async function consulta(){
+            cep = document.getElementById('input').value;
+            
+            await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(dados => {
+                    dadosCep = dados;
+                })
+                .catch(error =>{
+                    alert('Erro na busca do CEP');
+                });
+
+            if(dadosCep){
+                document.getElementById('rua').textContent = dadosCep.logradouro
+                document.getElementById('bairro').textContent = dadosCep.bairro
+                document.getElementById('cidade').textContent = dadosCep.localidade
+                document.getElementById('estado').textContent = dadosCep.uf + "-" + dadosCep.estado
+            } else{
+                alert('Erro ao retornar os dados')
+            }
+        }
+    </script>
 </body>
 </html>
